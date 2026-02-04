@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio Saya</title>
+    <style>
+        /* Reset dan Font */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        a {
+            color: #bb86fc;
+            text-decoration: none;
+        }
+        a:hover {
+            color: #3700b3;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(18, 18, 18, 0.9);
+            padding: 1rem 2rem;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav h1 {
+            font-size: 1.5rem;
+            color: #bb86fc;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+        nav ul li {
+            margin-left: 2rem;
+        }
+        nav ul li a {
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        /* Section Umum */
+        section {
+            padding: 5rem 2rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .container {
+            max-width: 1200px;
+            width: 100%;
+        }
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Hero Section - Background GIF diperbaiki */
+        #hero {
+            background: url('https://cdna.artstation.com/p/assets/images/images/021/720/920/original/pixel-jeff-mario.gif?1572709433') no-repeat center center/cover;
+            position: relative;
+            color: #ffffff;
+        }
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Overlay untuk kontras teks */
+            z-index: 1;
+        }
+        #hero .container {
+            position: relative;
+            z-index: 2;
+        }
+        #hero h2 {
+            font-size: 3rem;
+        }
+        #hero p {
+            font-size: 1.5rem;
+        }
+
+        /* About Section - Layout gambar simetris dan teks ringkas */
+        #about {
+            background-color: #1a1a1a;
+            text-align: left;
+        }
+        #about .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #about .content {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            max-width: 800px;
+        }
+        #about img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        #about .text {
+            flex: 1;
+        }
+        #about .experience {
+            margin-top: 2rem;
+            list-style: none;
+            padding: 0;
+        }
+        #about .experience li {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: #2c2c2c;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        #about .experience li strong {
+            color: #bb86fc;
+        }
+
+        /* Skills Section */
+        #skills {
+            background-color: #121212;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .skill {
+            background-color: #2c2c2c;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s;
+        }
+        .skill:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Projects Section - Gambar simetris dan deskripsi ringkas */
+        #projects {
+            background-color: #1a1a1a;
+        }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .project {
+            background-color: #2c2c2c;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s;
+        }
+        .project:hover {
+            transform: translateY(-5px);
+        }
+        .project img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+        .project ul {
+            text-align: left;
+            list-style: disc;
+            padding-left: 1rem;
+        }
+
+        /* Contact Section */
+        #contact {
+            background-color: #121212;
+        }
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background-color: #2c2c2c;
+            border: 1px solid #bb86fc;
+            border-radius: 8px;
+            color: #e0e0e0;
+        }
+        button {
+            background-color: #bb86fc;
+            color: #121212;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #3700b3;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1a1a1a;
+            padding: 1rem 2rem;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+            section {
+                padding: 3rem 1rem;
+            }
+            #about .content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <h1>MUH. DHUHA QOLBY TAQIYYA</h1>
+            <ul>
+                <li><a href="#hero">Beranda</a></li>
+                <li><a href="#about">Tentang</a></li>
+                <li><a href="#skills">Keahlian</a></li>
+                <li><a href="#projects">Proyek</a></li>
+                <li><a href="#contact">Kontak</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="hero">
+        <div class="container">
+            <h2>Selamat Datang di Portofolio Saya</h2>
+            <p>Saya adalah UI/UX Designer yang passionate tentang desain inovatif. Mari jelajahi karya saya.</p>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2>Tentang Saya</h2>
+            <div class="content">
+                <img src="https://i.ibb.co.com/3mz6MNbv/Whats-App-Image-2026-01-22-at-08-48-40.jpg" alt="Foto Profil Saya">
+                <div class="text">
+                    <p>Saya adalah UI/UX Designer berbasis di Sumbersari-Kesamben, dengan passion mendalam terhadap teknologi dan desain. Dengan pengalaman 14 tahun di industri digital, saya berkomitmen menciptakan solusi inovatif yang fungsional, estetis, dan user-friendly. Di luar pekerjaan, saya suka membaca buku teknologi dan menjelajah alam untuk inspirasi.</p>
+                    <ul class="experience">
+                        <li><strong>Web Developer di PT. Tech Solutions (2020 - Sekarang)</strong>: Mengembangkan situs responsif dengan HTML, CSS, JS, dan React. Meningkatkan performa 30% via optimasi kode dan API.</li>
+                        <li><strong>Freelance Web Designer (2018 - 2020)</strong>: Mendesain ulang e-commerce dan app mobile menggunakan Figma/Adobe XD. Kompatibilitas lintas perangkat dan ulasan positif dari klien.</li>
+                        <li><strong>Pendidikan: Sarjana Teknik Informatika, Universitas Indonesia (2014 - 2018)</strong>: Lulus cum laude, fokus pengembangan software. Proyek akhir: Aplikasi web AI yang dikembangkan jadi prototipe.</li>
+                        <li><strong>Proyek Pribadi: Aplikasi To-Do List Pintar (2022)</strong>: App web dengan AI untuk prioritas tugas. Dibangun dengan Node.js/MongoDB, diakses 500+ pengguna.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <h2>Keahlian</h2>
+            <div class="skills-grid">
+                <div class="skill">
+                    <h3>HTML/CSS</h3>
+                    <p>Ahli dalam membangun layout responsif.</p>
+                </div>
+                <div class="skill">
+                    <h3>JavaScript</h3>
+                    <p>Mengembangkan interaktivitas web.</p>
+                </div>
+                <div class="skill">
+                    <h3>React</h3>
+                    <p>Membangun aplikasi web modern.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <h2>Proyek</h2>
+            <div class="projects-grid">
+                <div class="project">
+                    <img src="https://i.ibb.co.com/MDPS4dxZ/image.png" alt="Proyek Notion">
+                    <h3>Proyek Notion</h3>
+                    <ul>
+                        <li>Aplikasi produktivitas all-in-one oleh Notion Labs (2016).</li>
+                        <li>Untuk catatan, tugas, database, dan organisasi info.</li>
+                        <li>Ganti Evernote/Trello untuk produktivitas pribadi/tim.</li>
+                    </ul>
+                    <a href="#">Lihat Detail</a>
+                </div>
+                <div class="project">
+                    <img src="https://i.ibb.co.com/W43LgDBk/images.png" alt="Proyek Any.do">
+                    <h3>Proyek Any.do</h3>
+                    <ul>
+                        <li>App manajemen tugas oleh Any.do Inc. (2012).</li>
+                        <li>Organisir tugas harian, proyek, dan jadwal.</li>
+                        <li>Alternatif Todoist dengan reminder otomatis.</li>
+                    </ul>
+                    <a href="#">Lihat Detail</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2>Kontak</h2>
+            <form action="#" method="post">
+                <input type="text" name="name" placeholder="Nama Anda" required>
+                <input type="email" name="email" placeholder="Email Anda" required>
+                <textarea name="message" placeholder="Pesan Anda" rows="5" required></textarea>
+                <button type="submit">Kirim</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 MUH. DHUHA QOLBY TAQIYYA. Semua hak dilindungi.</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling untuk navigasi
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
